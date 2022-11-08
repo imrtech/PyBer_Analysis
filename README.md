@@ -4,7 +4,7 @@
 
 In this project we analyze and visualize ridesharing data from January through April, 2019 by Pyber, a Python-based ridesharing app company. Our analysis will help the company improve access to ride-sharing services and determine affordability for underserved neighborhoods.
 
-The analysis takes into account the following items based on the different city types: Urban, Suburban and Rural.
+The analysis takes into account the following data based on the different city types: Urban, Suburban and Rural.
 
 - the percentage of total rides,
 - the percentage of total drivers,
@@ -12,8 +12,21 @@ The analysis takes into account the following items based on the different city 
 - the average fare per ride and driver,
 - the total fare by city type.
 
+The multiple line plot we create will show the total fares for each week by city type for the given period.
 
 ## Results
+
+## Exploratory Analysis
+
+To help us visualize ridership we initially created a pie chart.
+We can see that that the three city types have varying percent of total rides, with rural at a low 5.3%, suburban at 26.3% and urban at 68.4%
+
+ ![This is an image](/analysis/Fig6.png)
+
+Looking at the driver count by city type we see that drivers in rural cities are at 0.8% versus suburban at 12.5% and urban at a high of 86.7%
+
+ ![This is an image](/analysis/Fig7.png)
+
 
 ### Load and Read the CSV files
 
@@ -96,6 +109,9 @@ Suburban    19356.33
 Urban       39854.38
 Name: fare, dtype: float64
 ```
+
+We created the avg_fare_per_ride_by_city series, again using the groupby function, to get the average fare per ride for each city type.
+
 ``` 
 #  4. Get the average fare per ride for each city type. 
 avg_fare_per_ride_by_city = pyber_data_df.groupby('type').mean().fare
@@ -107,6 +123,8 @@ Suburban    30.970128
 Urban       24.525772
 Name: fare, dtype: float64
 ```
+
+We created the avg_fare_per_driver_by_city series, again using the groupby function, to get the average fare per driver for each city type.
 
 ```
 # 5. Get the average fare per driver for each city type. 
@@ -138,6 +156,8 @@ pyber_summary_df
 ![This is an image](/analysis/Screenshot2.png)
 
 ```
+
+We cleaned up the DataFrame by removing the index name and formatting the columns to include dollar sign($) and decimals.
 #  7. Cleaning up the DataFrame. Delete the index name
 pyber_summary_df.index.name = None
 
@@ -157,9 +177,9 @@ pyber_summary_df
 
 
 
-### Deliverable 2. Create a multiple line plot that shows the total weekly of the fares for each type of city.
+### Deliverable 2. Create a multiple line plot that shows the total weekly fares for each type of city.
 
-With our current analysis we are able to create a multiple-line graph that shows the total fares for each week by city type.
+With our current analysis we then created a multiple-line graph that shows the total fares for each week by city type.
 We ran the following code to prepare the data for graphing.
 
 ```
@@ -262,5 +282,12 @@ plt.show()
 ![This is an image](/analysis/PyBer_fare_summary.png)
 
 ## Summary
-- The code file can be found here:  [filename](/Student_Data_Challenge_Starter_Code.ipynb)
+
+From what we have gathered, we can see that in rural areas, ride-sharing was low and only made up $4,327.93 in total fares. This could be attributed to the low number of drivers available or the high fares. We would need to analyze this further to see if there are any correlations and look at other factors that may contribute to low ridership, such as trip distance or other commutting options. 
+
+Total fares amoung the three city types was $63,538.64. With urban areas generating the highest total fares at $39,854.38. An interesting discovery is that suburban drivers accounted for roughly 30% of the total fares, even though they only made up about 12.5% of all drivers. Additional analysis would be required to understand why this is the case. 
+
+In general we see that that ridership is high in urban areas, where there are more drivers, and the fares are low. Analyzing distances traveled and the presence of other commutting options or lack thereof in those areas would be an interesting approach. 
+
+- The code file can be found here:  [filename](/PyBer_Challenge.ipynb)
 
